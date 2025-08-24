@@ -22,6 +22,7 @@ The goal is to analyze historical financial trends, check stationarity, decompos
 <img width="1651" height="705" alt="Screenshot 2025-08-24 235957" src="https://github.com/user-attachments/assets/9a703be3-709e-42a4-9ab9-082c882a74c9" />
 <img width="1398" height="969" alt="Screenshot 2025-08-25 000011" src="https://github.com/user-attachments/assets/b51af023-d06d-44ef-8739-2b387b86b02e" />
 ---
+
 ## 🔬 Methodology
 
 Data Loading & Cleaning
@@ -70,4 +71,4 @@ Submit a Pull Request
 
 This project is licensed under the MIT License.
 
----
+
