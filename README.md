@@ -18,76 +18,56 @@ The goal is to analyze historical financial trends, check stationarity, decompos
 - Clean plots for Revenue & Expenses trends  
 
 ---
+<img width="1411" height="979" alt="Screenshot 2025-08-24 235942" src="https://github.com/user-attachments/assets/9dffac0e-638d-4aa7-88fe-938652e8da39" />
+<img width="1651" height="705" alt="Screenshot 2025-08-24 235957" src="https://github.com/user-attachments/assets/9a703be3-709e-42a4-9ab9-082c882a74c9" />
+<img width="1398" height="969" alt="Screenshot 2025-08-25 000011" src="https://github.com/user-attachments/assets/b51af023-d06d-44ef-8739-2b387b86b02e" />
+---
+## 🔬 Methodology
 
-## 📂 Project Structure
-├── data/ # Raw or sample financial data (CSV/Excel)
-├── notebooks/ # Jupyter notebooks with analysis
-├── results/ # Forecast plots and outputs
-├── requirements.txt # Python dependencies
-└── README.md # Project documentation
+Data Loading & Cleaning
 
-yaml
-Copy
-Edit
+Exploratory Data Analysis (EDA)
+
+Stationarity Testing (ADF test)
+
+Model Training – ARIMA, SARIMAX, Prophet
+
+Model Selection – RMSE-based comparison
+
+Final Forecasting – Generate 12-month predictions
+---
+## 🛠️ Tools & Libraries
+
+Python (3.10+)
+
+Pandas, NumPy – Data handling
+
+Matplotlib, Seaborn – Visualization
+
+Statsmodels, pmdarima – ARIMA & SARIMAX
+
+Prophet – Robust forecasting
+---
+## 📈 Insights
+
+ARIMA/SARIMAX excel at short-term seasonality & stationarity handling
+
+Prophet is strong in capturing long-term growth trends with seasonality
+
+Model comparison highlights trade-offs between flexibility and accuracy
+---
+## 🤝 Contribution
+
+Want to improve this project? Contributions are welcome!
+
+Fork the repo
+
+Create a feature branch
+
+Submit a Pull Request
+---
+## 📜 License
+
+This project is licensed under the MIT License.
 
 ---
-
-## ⚙️ Installation
-Clone the repository:
-```bash
-git clone https://github.com/your-username/financial-forecasting.git
-cd financial-forecasting
-Create a virtual environment & install dependencies:
-
-
-pip install -r requirements.txt
-(If you’re running on Kaggle or Google Colab, most libraries are pre-installed.
-You may need to install pmdarima manually:)
-
-
-pip install pmdarima
-📘 Usage
-Run the Jupyter notebook step by step:
-
-
-jupyter notebook notebooks/forecasting.ipynb
-Or run the Python script:
-
-
-python main.py
-📊 Example Output
-Revenue & Expense trends
-
-Decomposition plots (Trend, Seasonal, Residuals)
-
-ARIMA, SARIMAX & Prophet predictions
-
-12-month financial forecast
-
-(You can add screenshots of your plots here for better presentation!)
-
-🛠️ Technologies Used
-Python 3.10+
-
-Pandas, NumPy
-
-Matplotlib, Seaborn
-
-Statsmodels
-
-pmdarima
-
-Prophet (Meta)
-
-## 📈 Results
-ARIMA and SARIMAX capture seasonality and trend well
-
-Prophet provides interpretable forecasts with components (trend/seasonality/holidays)
-
-Best model selection is based on RMSE
-
-🤝 Contributing
-Contributions are welcome! Feel free to fork this repo and submit a pull request.
-
-## 📜 License
-This project is licensed under the MIT License.
