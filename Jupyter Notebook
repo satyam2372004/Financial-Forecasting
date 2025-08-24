@@ -1,0 +1,66 @@
+import pandas as pd
+from prophet import Prophet
+from sklearn.metrics import mean_squared_error
+import pandas as pd
+import matplotlib.pyplot as plt
+from statsmodels.tsa.seasonal import seasonal_decompose
+from statsmodels.tsa.stattools import adfuller
+
+
+# 1. Load
+try:
+    # Load dataset
+    df = pd.read_csv("/kaggle/input/finance-forecating/financial_forecast_data.csv", parse_dates=["Date"], index_col="Date")
+    df = df.asfreq('MS')  # Monthly frequency
+
+    # Simple visualization
+    df["Revenue"].plot(title="Revenue Over Time")
+    plt.show()
+
+except Exception as e:
+    print("Error:", e)
+
+
+# 2. Plot
+plt.figure(figsize=(10,4))
+plt.plot(df['Revenue'], label='Revenue')
+plt.plot(df['Expenses'], label='Expense')
+plt.legend(); plt.title('Revenue & Expense')
+
+
+# 3. Decompose revenue
+decomp = seasonal_decompose(df['Revenue'].dropna(), model='additive', period=12)
+decomp.plot();
+
+
+# 4. ADF
+res = adfuller(df['Revenue'].dropna())
+print('ADF p-value:', res[1])
+
+
+# 6. Fit SARIMAX
+sarima = SARIMAX(train, order=model_auto.order, seasonal_order=model_auto.seasonal_order)
+sarima_res = sarima.fit(disp=False)
+pred = sarima_res.get_forecast(steps=12)
+pred_mean = pred.predicted_mean
+pred_ci = pred.conf_int()
+print('SARIMA RMSE:', np.sqrt(mean_squared_error(test, pred_mean)))
+
+
+# 7. Prophet
+prophet_df = df['Revenue'].reset_index().rename(columns={'date':'ds','Revenue':'y'}).dropna()
+m = Prophet(yearly_seasonality=True)
+m.fit(prophet_df[:-12])
+future = m.make_future_dataframe(periods=12, freq='MS')
+forecast = m.predict(future)
+prophet_pred = forecast.set_index('ds')['yhat'][-12:]
+print('Prophet RMSE:', np.sqrt(mean_squared_error(test, prophet_pred)))
+
+
+# 8. Export forecast (choose best model)
+out = forecast[['ds','yhat','yhat_lower','yhat_upper']].tail(12).rename(columns={'ds':'date'})
+out.to_csv('reports/forecasts.csv', index=False)
+
+
+# 9. Save plot
+plt.savefig('reports/Revenue_forecast.png', dpi=150)
